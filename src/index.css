@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .menu_list {
+        @apply hover:bg-zinc-500 hover:border-2 hover:text-zinc-300 rounded-md text-zinc-400 border-pink-300 dark:text-zinc-800 dark:border-blue-400;
+    }
+    .ontainer_button_getstarted {
+        @apply dark:bg-zinc-400 dark:text-blue-400 dark:border-2 dark:border-blue-400 dark:hover:bg-blue-400 dark:hover:text-white
+    }
+}
