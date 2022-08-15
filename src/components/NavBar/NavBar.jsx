@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {CgSun} from "react-icons/cg"
-import {RiUser3Fill} from "react-icons/ri"
+import {RiUser3Fill, RiUserStarFill} from "react-icons/ri"
 import {VscClose} from "react-icons/vsc"
 import {BsMoonStars} from "react-icons/bs"
 import useDarkMode from "../../useDarkMode";
 const NavBar = () => {
-    const [OpenMenu, setOpenMenu] = useState(false);
-    const [isDarkMode, toggleDarkMode] = useDarkMode();
+    const [openMenu, setOpenMenu] = useState(false);
+
     const handleMenu = () => {
-        setOpenMenu(!OpenMenu);
+        setOpenMenu(!openMenu);
     }
+    const [isDarkMode, toggleDarkMode] = useDarkMode();
     return ( 
         <nav className="flex items-center flex-row">
             <div className=" pl-4 flex items-center">
@@ -23,14 +25,16 @@ const NavBar = () => {
                     </div>
                     )
                     }
-                    <div className="hover:opacity-70 cursor-pointer">
-                        <p className="font-extrabold text-xl text-pink-300 dark:text-blue-400 duration-1000">Downyo</p>
-                        <p className="font-medium text-sm text-white dark:text-zinc-500">Let's show your personality</p>
-                    </div>
+                    <Link to="/">
+                        <div className="hover:opacity-70 cursor-pointer hidden md:block">
+                            <p className="font-extrabold text-xl text-pink-300 dark:text-blue-400 duration-1000">Downyo</p>
+                            <p className="font-medium text-sm text-white dark:text-zinc-500">Let's show your personality</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
-            <ul className="ml-auto mr-4 w-11 h-11 rounded-full bg-pink-300 dark:bg-blue-400 duration-1000 flex items-center justify-center">
-                {OpenMenu ? (
+            <ul className="ml-auto mr-4 w-11 h-11 rounded-full bg-pink-300 dark:bg-blue-400 duration-1000 flex items-center cursor-pointer justify-center">
+                {openMenu ? (
                 <div className="flex items-center justify-center hover:opacity-50 duration-500" onClick={handleMenu}>
                 <VscClose size={"28px"} color={"white"}/>
                 </div>)
@@ -39,13 +43,21 @@ const NavBar = () => {
                     <RiUser3Fill size={"26px"} color={"white"}/>
                 </div>
                 )}
-                {OpenMenu && (
-                    <div className=" absolute right-8 top-20 bg-zinc-700 dark:bg-zinc-300 rounded-md text-start p-2">
-                        <li className=" flex menu_list cursor-pointer">
-                            <RiUser3Fill size={"12px"} className="m-1 mt-[6px]"/>
-                            <span>Get started</span>
+                {openMenu && (
+                    <div className=" absolute right-8 top-20 bg-zinc-700 dark:bg-zinc-300 rounded-md text-start p-2 ease-in-out duration-1000">
+                        <li>
+                            <Link to="/register">
+                                <div className=" flex menu_list cursor-pointer">                         
+                                    <RiUser3Fill size={"14px"} className="m-1 mt-[5.5px]"/>
+                                    <span>Get started</span>
+                                </div>  
+                            </Link> 
                         </li>
-                        <li className="flex menu_list ml-1 cursor-pointer">Already have an account?</li>
+                        <li className="flex menu_list pl-1 cursor-pointer">
+                            <Link to="/login">
+                                <p>Already have an account?</p>
+                            </Link>
+                        </li>
                     </div>
                 )}
             </ul>
