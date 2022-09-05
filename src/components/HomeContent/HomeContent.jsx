@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-const container = () => {
+const HomeContent = () => {
     return (
         <div>
             <div className=" mt-32">
@@ -19,4 +19,4 @@ const container = () => {
     );
 }
  
-export default container;
+export default HomeContent;

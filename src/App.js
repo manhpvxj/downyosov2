@@ -1,14 +1,17 @@
-
-import NavBar from './components/NavBar/NavBar';
-import LandingMiddle from './components/LandingMiddle/LandingMiddle';
+import { Routes, Route} from 'react-router-dom';
+import { Home, Register, Login, Profile} from './views/index';
 import './App.css';
 
 function App() {
 
   return (
-    <div className="h-screen overflow-auto bg-zinc-800 px-4 py-8 dark:bg-zinc-100 duration-1000">
-      <NavBar/>
-      <LandingMiddle/>
+    <div >
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/:user" element={<Profile/>}/>
+      </Routes>
     </div>
   );
 }

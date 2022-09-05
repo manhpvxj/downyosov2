@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {CgSun} from "react-icons/cg"
-import {RiUser3Fill, RiUserStarFill} from "react-icons/ri"
+import {RiUser3Fill} from "react-icons/ri"
 import {VscClose} from "react-icons/vsc"
 import {BsMoonStars} from "react-icons/bs"
 import useDarkMode from "../../useDarkMode";
 const NavBar = () => {
     const [openMenu, setOpenMenu] = useState(false);
-
     const handleMenu = () => {
         setOpenMenu(!openMenu);
     }
@@ -19,7 +18,8 @@ const NavBar = () => {
                     {isDarkMode ? (
                     <div className="flex w-10 h-10 m-1 rounded-full bg-pink-300 items-center justify-center cursor-pointer dark:bg-blue-400 duration-1000" onClick={() => toggleDarkMode(!isDarkMode)}>
                         <CgSun size={"20px"} color={"white"} className="hover:opacity-50 duration-500" />
-                    </div>) : (
+                    </div>) 
+                    : (
                         <div className="flex w-10 h-10 m-1 rounded-full bg-pink-300 items-center justify-center cursor-pointer" onClick={() => toggleDarkMode(!isDarkMode)}>
                         <BsMoonStars size={"20px"} color={"black"} className="hover:opacity-50 duration-500" />
                     </div>
@@ -65,4 +65,4 @@ const NavBar = () => {
      );
 }
  
-export default NavBar;
+export default NavBar
