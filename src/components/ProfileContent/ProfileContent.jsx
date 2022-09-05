@@ -5,14 +5,13 @@ import axiosClient from "../../api/axiosClient";
 
 const ProfileContent = () => {
     const { user } = useParams();
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({});
 
   useEffect( () => {
     const fetchData = async () => {
       try {
-        const res = await axiosClient.get("/" +  user);
+        const res = await axiosClient.get("/" + user);
         setUserData(res);
-        console.log(userData);
       } catch (error) {
         console.log(error);
       }
@@ -20,8 +19,8 @@ const ProfileContent = () => {
     fetchData();
   }, []);
     return ( 
-        <div class="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
-    <div class="px-6">
+      <div class="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+        <div class="px-6">
         <div class="flex flex-wrap justify-center">
             <div class="w-full flex justify-center">
                 <div class="relative">
@@ -60,7 +59,6 @@ const ProfileContent = () => {
         </div>
     </div>
 </div>
-
     );
 }
  
