@@ -31,7 +31,7 @@ const RegisterContent = () => {
             localStorage.setItem("username", res.username);
             localStorage.setItem("token", res.token);
             alert(res.msg);
-            navigate("/");
+            navigate("/u/" + res.username);
           } catch (e) {
             setErrMessage(e.response.data.errMsg);
         }

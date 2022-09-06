@@ -7,7 +7,6 @@ const LoginContent = () => {
     const [password, setPassword] = useState("");
     const [errMessage, setErrMessage] = useState("");
 
-    const [isLoggedin, setLoginState] = useState(false);
     const navigate = useNavigate();
     const handleSubmitLogin= async () => {
         if (username && password ) {
@@ -20,8 +19,7 @@ const LoginContent = () => {
             localStorage.setItem("username", res.username);
             localStorage.setItem("token", res.token);
             alert("Login successful!");
-            setLoginState(!isLoggedin);
-            navigate("/");
+            navigate("/u/"+res.username);
             } catch (e) {
                 setErrMessage(e.response.data.errMsg);
             }
