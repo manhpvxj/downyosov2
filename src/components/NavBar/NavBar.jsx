@@ -33,7 +33,7 @@ const NavBar = () => {
                     </Link>
                 </div>
             </div>
-            <ul className="ml-auto mr-4 w-11 h-11 rounded-full bg-pink-300 dark:bg-blue-400 duration-1000 flex items-center cursor-pointer justify-center">
+            <ul className="ml-auto mr-4 w-11 h-11 rounded-full bg-pink-300 dark:bg-blue-400 duration-1000 flex items-center cursor-pointer justify-center z-10">
                 {openMenu ? (
                 <div className="flex items-center justify-center hover:opacity-50 duration-500" onClick={handleMenu}>
                 <VscClose size={"28px"} color={"white"}/>

@@ -61,9 +61,9 @@ const UserNavBar = () => {
                 {openMenu && (
                     <div className=" absolute right-8 top-20 bg-zinc-700 dark:bg-zinc-300 rounded-md text-start p-2 ease-in-out duration-1000">
                         <li className="flex menu_list cursor-pointer">
-                            <Link to="/:user">                       
+                            <Link to={`/u/${localStorage.getItem("username")}`}>                       
                                 <p>Profile</p>
-                            </Link> 
+                            </Link>
                         </li>
                         <li className="flex menu_list cursor-pointer">
                             <Link to="/change-password">

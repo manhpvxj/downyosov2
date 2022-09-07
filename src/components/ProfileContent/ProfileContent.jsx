@@ -1,20 +1,20 @@
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { BsFacebook, BsGithub, BsDiscord } from "react-icons/bs";
+import { FaUserEdit } from "react-icons/fa";
 import axiosClient from "../../api/axiosClient";
 
 const ProfileContent = () => {
     const { user } = useParams();
     const [userData, setUserData] = useState({});
     const navigate = useNavigate();
-
+    const loginCheck = localStorage.getItem("token");
   useEffect( () => {
     const fetchData = async () => {
       try {
         const res = await axiosClient.get("/users/" + user);
         setUserData(res);
-        console.log(res);
       } catch (error) {
         navigate("/login");
         alert(error);
@@ -30,6 +30,15 @@ const ProfileContent = () => {
                 <div class="relative">
                 </div>
             </div>
+            {loginCheck ? (<div className="flex absolute top-4 right-4 w-[30px] h-[30px] rounded-lg bg-pink-300 dark:bg-blue-400 items-center justify-center">
+                <Link to={`/u/${localStorage.getItem("username")}/edit`}>
+                    <div className=" ml-1 bg-pink-300 dark:bg-blue-400 text-white hover:opacity-70">
+                        <FaUserEdit size={"20px"}></FaUserEdit>
+                    </div>
+                </Link>
+            </div>) : (
+                <></>
+            )}
             <div class="w-full text-center mt-10">
                 <div class="flex justify-center lg:pt-4 pt-8 pb-0">
                     <div class="p-3 text-center">
@@ -42,17 +51,18 @@ const ProfileContent = () => {
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="text-center mt-2">
             <div className="flex items-center justify-center m-auto w-16 h-16">
                 <img src={userData.avatar} alt="avatar" className="rounded-full"/>
             </div>
-            <h3 class="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">{userData.username}</h3>
+            <h3 class="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
         </div>
         <div class="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center duration-1000">
             <div class="flex flex-wrap justify-center">
                 <div class="w-full px-4">
-                    <p class="font-light leading-relaxed dark:text-slate-700 text-zinc-300 mb-4">{userData.description}</p>
+                    <p class="font-normal leading-relaxed dark:text-slate-700 text-zinc-200 mb-4">{userData.description}</p>
                 </div>
                 <ul className="flex">
                     <li>

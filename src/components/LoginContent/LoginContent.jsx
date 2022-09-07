@@ -23,7 +23,7 @@ const LoginContent = () => {
             } catch (e) {
                 setErrMessage(e.response.data.errMsg);
             }
-          };
+          }
         }
     
     return (

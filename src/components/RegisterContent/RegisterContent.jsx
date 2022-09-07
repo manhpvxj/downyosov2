@@ -35,7 +35,7 @@ const RegisterContent = () => {
           } catch (e) {
             setErrMessage(e.response.data.errMsg);
         }
-      };
+      }
     }
     return (
         <div>
