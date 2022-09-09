@@ -9,7 +9,7 @@ const ProfileContent = () => {
     const { user } = useParams();
     const [userData, setUserData] = useState({});
     const navigate = useNavigate();
-    const loginCheck = localStorage.getItem("token");
+    const userCheck = user === localStorage.getItem("username");
   useEffect( () => {
     const fetchData = async () => {
       try {
@@ -30,7 +30,7 @@ const ProfileContent = () => {
                 <div class="relative">
                 </div>
             </div>
-            {loginCheck ? (<div className="flex absolute top-4 right-4 w-[30px] h-[30px] rounded-lg bg-pink-300 dark:bg-blue-400 items-center justify-center">
+            {userCheck ? (<div className="flex absolute top-4 right-4 w-[30px] h-[30px] rounded-lg bg-pink-300 dark:bg-blue-400 items-center justify-center">
                 <Link to={`/u/${localStorage.getItem("username")}/edit`}>
                     <div className=" ml-1 bg-pink-300 dark:bg-blue-400 text-white hover:opacity-70">
                         <FaUserEdit size={"20px"}></FaUserEdit>

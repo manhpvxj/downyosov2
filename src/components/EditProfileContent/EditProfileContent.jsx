@@ -2,29 +2,46 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BsFacebook, BsGithub, BsDiscord } from "react-icons/bs";
 import axiosClient from "../../api/axiosClient";
+import axiosImgur from "../../api/axiosImgur";
 
 const EditProfileContent = () => {
     const { user } = useParams();
     const [userData, setUserData] = useState({});
-    const [file, setFile] = useState();
+    const [avatar, setAvatar] = useState();
     const onFileChange = (e) => {
       // Updating the state
-      setFile({ file: e.target.files[0] });
+      const file = e.target.files[0];
+      file.preview = URL.createObjectURL(file);
+      setAvatar(file);
     };
     const navigate = useNavigate();
     useEffect( () => {
     const fetchData = async () => {
       try {
-        const res = await axiosClient.get("/users/" + user);
+        const res = await axiosClient.get("/users/" + user +"/edit");
         setUserData(res);
       } catch (error) {
-        navigate("/login");
+
+        navigate("/u/" + localStorage.getItem("username"));
         alert(error);
       }
     };
     fetchData();
-  }, [navigate]);
+    }, [navigate]);
 
+    const handleEditProfile = async () => {
+        try {
+        const formData = new FormData();
+        formData.append("image", avatar)
+        const resImg = await axiosImgur.post("/upload", formData);
+        await axiosClient.post("/users/" + user + "/edit",{...userData, avatar : resImg.data.link});
+        navigate("/" + user);
+        }
+        catch (e) {
+            navigate("/news")
+            console.log(e);
+        }
+    }
     return ( 
       <div className="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full mb-6 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16 duration-1000">
         <div className="px-6">
@@ -49,7 +66,7 @@ const EditProfileContent = () => {
         </div>
         <div class="text-center mt-2">
             <div className="flex items-center justify-center m-auto w-16 h-16">
-                <img src={userData.avatar} alt="avatar" className="rounded-full"/>
+                <img src={avatar ? avatar.preview : userData.avatar} alt="avatar" className="rounded-full"/>
             </div>
             <div className="mt-2">
                 <label>
@@ -81,7 +98,8 @@ const EditProfileContent = () => {
             </div>
             <div className="w-full mt-10 justify-center items-center">
                 <button 
-                    className="items-center font-bold bg-pink-300 text-white py-1 px-6 rounded-lg dark:bg-blue-400 dark:text-zinc-600 hover:opacity-80 duration-500">
+                    className="items-center font-bold bg-pink-300 text-white py-1 px-6 rounded-lg dark:bg-blue-400 dark:text-zinc-600 hover:opacity-80 duration-500" 
+                    onClick={handleEditProfile}>
                     <p>Submit</p>
                 </button>
             </div>
