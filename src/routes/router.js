@@ -1,4 +1,4 @@
-import { Home, Login, Register, Profile, HomeLayout, UserLayout, EditProfile } from "../views/index"
+import { Home, Login, Register, Profile, HomeLayout, UserLayout, EditProfile, News } from "../views/index"
  
 const isLoggedin = localStorage.getItem("token");
 const publicRouter = [
@@ -13,6 +13,9 @@ const publicRouter = [
     },
     {
         path: "/u/:user/edit", component: EditProfile, layout: UserLayout,
+    },
+    {
+        path:"/news", component: News, layout: UserLayout,
     },
     {
         path: "/", component: Home, layout: HomeLayout,

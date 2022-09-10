@@ -11,6 +11,7 @@ const EditProfileContent = () => {
     const onFileChange = (e) => {
       // Updating the state
       const file = e.target.files[0];
+      console.log(file);
       file.preview = URL.createObjectURL(file);
       setAvatar(file);
     };

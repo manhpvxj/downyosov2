@@ -1,9 +1,10 @@
 import axios from "axios";
 const axiosImgur = axios.create({
-  baseURL: process.env.REACT_APP_IMGUR,
+  baseURL: process.env.NODE_ENV === 'production' ? "https://api.imgur.com/3" : process.env.REACT_APP_IMGUR,
   headers: {
     "content-type": "multipart/form-data",
-    Authorization: process.env.REACT_APP_CLIENTID,
+    "accept": "*/*",
+    Authorization: `CLIEND-ID  ${process.env.REACT_APP_CLIENTID}`,
   },
 });
 
