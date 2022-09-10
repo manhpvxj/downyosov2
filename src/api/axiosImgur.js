@@ -5,6 +5,7 @@ const axiosImgur = axios.create({
     "content-type": "multipart/form-data",
     "accept": "*/*",
     Authorization: `CLIEND-ID  ${process.env.REACT_APP_CLIENTID}`,
+    "Access-Control-Allow-Origin": "*",
   },
 });
 
