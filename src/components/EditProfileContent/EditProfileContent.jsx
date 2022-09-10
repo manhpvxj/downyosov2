@@ -34,7 +34,7 @@ const EditProfileContent = () => {
         try {
         const formData = new FormData();
         formData.append("image", avatar)
-        const resImg = await axiosImgur.post("/upload", formData);
+        const resImg = await axiosImgur.post("/image", formData);
         await axiosClient.post("/users/" + user + "/edit",{...userData, avatar : resImg.data.link});
         navigate("/" + user);
         }
