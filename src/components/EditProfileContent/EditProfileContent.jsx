@@ -2,16 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BsFacebook, BsGithub, BsDiscord } from "react-icons/bs";
 import axiosClient from "../../api/axiosClient";
-import axiosImgur from "../../api/axiosImgur";
 
 const EditProfileContent = () => {
     const { user } = useParams();
     const [userData, setUserData] = useState({});
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState(userData.avatar);
     const onFileChange = (e) => {
       // Updating the state
       const file = e.target.files[0];
-      console.log(file);
       file.preview = URL.createObjectURL(file);
       setAvatar(file);
     };
@@ -19,24 +17,25 @@ const EditProfileContent = () => {
     useEffect( () => {
     const fetchData = async () => {
       try {
-        const res = await axiosClient.get("/users/" + user +"/edit");
+        const res = await axiosClient.get(`/users/${user}/edit`);
         setUserData(res);
       } catch (error) {
 
-        navigate("/u/" + localStorage.getItem("username"));
+        navigate(`/u/${user}`);
         alert(error);
       }
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigate]);
 
     const handleEditProfile = async () => {
         try {
-        const formData = new FormData();
-        formData.append("image", avatar)
-        const resImg = await axiosImgur.post("/image", formData);
-        await axiosClient.post("/users/" + user + "/edit",{...userData, avatar : resImg.data.link});
-        navigate("/" + user);
+            const formData = new FormData();
+            formData.append("avatar", avatar);
+            const resImg = await axiosClient.post(`/users/${user}/edit/upload`, formData);
+            await axiosClient.post(`/users/${user}/edit`,{...userData, avatar : resImg.url});
+            navigate("/u/" + user);
         }
         catch (e) {
             navigate("/news")
@@ -72,7 +71,7 @@ const EditProfileContent = () => {
             <div className="mt-2">
                 <label>
                     <span className="cursor-pointer dark:text-slate-700 text-zinc-200">Choose file</span>
-                    <input name="avatar" type="file" className="hidden" onChange={onFileChange}></input>
+                    <input name="avatar" type="file" enctype="multipart/form-data" className="hidden" onChange={onFileChange}></input>
                 </label>
             </div>
             <h3 className="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>

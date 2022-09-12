@@ -18,7 +18,7 @@ const UserNavBar = () => {
   useEffect( () => {
     const fetchData = async () => {
       try {
-        const res = await axiosClient.get("/users/" + localStorage.getItem("username"));
+        const res = await axiosClient.get(`/users/${localStorage.getItem("username")}`);
         setUserData(res);
       } catch (error) {
         alert(error);
