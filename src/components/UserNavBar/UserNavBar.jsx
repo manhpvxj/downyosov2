@@ -27,8 +27,8 @@ const UserNavBar = () => {
     fetchData();
   }, []);
     return ( 
-        <nav className="flex items-center flex-row">
-            <div className=" pl-4 flex items-center">
+        <nav className="flex items-center flex-row fixed w-[90%] pt-8 bg-zinc-800 dark:bg-zinc-100 duration-1000">
+            <div className=" pl-4 flex items-center mb-8">
                 <div className="flex">
                     {isDarkMode ? (
                     <div className="flex w-10 h-10 m-1 rounded-full bg-pink-300 items-center justify-center cursor-pointer dark:bg-blue-400 duration-1000" onClick={() => toggleDarkMode(!isDarkMode)}>
@@ -48,7 +48,7 @@ const UserNavBar = () => {
                     </Link>
                 </div>
             </div>
-            <ul className="ml-auto mr-4 rounded-full flex items-center cursor-pointer justify-center z-10">
+            <ul className="ml-auto mb-8 mr-4 rounded-full flex items-center cursor-pointer justify-center z-10">
                 {openMenu ? (
                     <div className="flex items-center justify-center hover:opacity-50 duration-500" onClick={handleMenu}>
                     <img src={userData.avatar} alt="avatar" className="w-11 h-11 rounded-full"></img>
