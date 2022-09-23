@@ -4,7 +4,7 @@ const HomeContent = () => {
         <div>
             <div className=" mt-32">
                 <div className="">
-                    <p className="text-center font-extrabold text-3xl text-white leading-8 tracking-tight dark:text-zinc-700">Your Links, Your Rules.</p>
+                    <p className="text-center font-extrabold text-3xl text-white leading-8 tracking-tight dark:text-zinc-700">Your Life, Your Rules.</p>
                     <p className="text-center folt-bold text-lg text-zinc-300 dark:text-zinc-700">Manage your identity, brands, and knowledge bases with ease.</p>
                 </div>
                 <div className="flex w-full mt-20 flex-col justify-center items-center">
@@ -13,6 +13,9 @@ const HomeContent = () => {
                         <p>Get started</p>
                         </Link>
                     </button>
+                    <Link to="/login" className=" font-medium text-white mt-2 hover:text-pink-300 dark:text-zinc-600 dark:hover:text-blue-400 duration-500">
+                        Already have an account?
+                    </Link>
                 </div>
             </div>
         </div>

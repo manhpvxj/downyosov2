@@ -43,7 +43,7 @@ const EditProfileContent = () => {
         }
     }
     return ( 
-      <div className="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full mb-6 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16 duration-1000">
+      <div className="relative max-w-md mx-auto top-28 md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full mb-6 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16 duration-1000">
         <div className="px-6">
         <div className="flex flex-wrap justify-center">
             <div className="w-full flex justify-center">

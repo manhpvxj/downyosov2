@@ -19,7 +19,7 @@ const LoginContent = () => {
             localStorage.setItem("username", res.username);
             localStorage.setItem("token", res.token);
             alert("Login successful!");
-            navigate("/u/"+res.username);
+            navigate("/news");
             } catch (e) {
                 setErrMessage(e.response.data.errMsg);
             }
@@ -34,28 +34,28 @@ const LoginContent = () => {
                         className="text-center font-extrabold text-4xl text-white leading-8 tracking-tight dark:text-zinc-700">Login</h1>
                     <div className="items-center justify-center mt-10">
                         <div className="w-[80%] ml-[10%]">
-                            <div class="flex flex-row items-center justify-between">
-                                <label class="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Username or Email</label>
+                            <div className="flex flex-row items-center justify-between">
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Username or Email</label>
                             </div>
-                            <div class="relative flex mt-1 shadow">
+                            <div className="relative flex mt-1 shadow">
                                 <input 
                                 name="username" 
                                 value={username} 
                                 type="text" 
-                                class="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
+                                className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
                                 onChange={(e) => {setUsername(e.target.value)}}/>
                             </div>
                         </div>
 
                         <div className="mt-4 w-[80%] ml-[10%]">
-                            <div class="flex flex-row items-center justify-between">
-                                <label class="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Password</label>
+                            <div className="flex flex-row items-center justify-between">
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Password</label>
                             </div>
-                            <div class="relative flex mt-1 shadow">
+                            <div className="relative flex mt-1 shadow">
                                 <input 
                                 name="password" 
                                 type="password" 
-                                class="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
+                                className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
                                 onChange={(e) => {setPassword(e.target.value)}}/>
                             </div>
                         </div>

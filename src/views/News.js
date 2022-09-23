@@ -1,7 +1,10 @@
-import { NewsFeed } from "../components/index";
+import { NewsFeed, CreatePost } from "../components/index";
 const News = () => {
     return ( 
-        <NewsFeed/>
+        <>
+        <CreatePost />
+        <NewsFeed />
+        </>
      );
 }
  

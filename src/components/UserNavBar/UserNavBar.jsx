@@ -27,7 +27,7 @@ const UserNavBar = () => {
     fetchData();
   }, []);
     return ( 
-        <nav className="flex items-center flex-row fixed w-[90%] pt-8 bg-zinc-800 dark:bg-zinc-100 duration-1000">
+        <nav className="flex items-center flex-row fixed w-[90%] pt-8 bg-zinc-800 dark:bg-zinc-100 duration-1000 z-10">
             <div className=" pl-4 flex items-center mb-8">
                 <div className="flex">
                     {isDarkMode ? (

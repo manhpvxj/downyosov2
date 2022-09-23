@@ -6,3 +6,4 @@ export {default as ProfileContent} from './ProfileContent/ProfileContent';
 export {default as UserNavBar } from './UserNavBar/UserNavBar';
 export {default as EditProfileContent} from './EditProfileContent/EditProfileContent';
 export {default as NewsFeed} from "./NewsFeed/NewsFeed";
+export {default as CreatePost } from "./CreatePost/CreatePost";
