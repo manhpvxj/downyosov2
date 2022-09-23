@@ -34,7 +34,7 @@ const CreatePost = () => {
                 </p>
             </div >
             <div className="ml-2 mb-2">
-                <input name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-zinc-400 placeholder-zinc-600 duration-500 w-auto h-auto" value={content} onChange={(e) => {setContent(e.target.value)}}></input>
+                <input name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-zinc-400 placeholder-zinc-600 duration-500 w-[50%] h-10 overflow-scroll" value={content} onChange={(e) => {setContent(e.target.value)}}></input>
                 <button className="absolute right-2 bottom-1 dark:text-zinc-700 dark:bg-blue-500 px-2 py-1 rounded-md bg-pink-300 duration-500" onClick={handleCreatePost}>Post</button>
             </div>
             </div>

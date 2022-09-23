@@ -43,13 +43,13 @@ const NewsFeed = () => {
         
         <div>
         <div className="flex text-sm text-white dark:text-zinc-700 ml-4 md:items-center md:justify-center" key={index}>
-            {(isLiked && !index) ? (
-              <div className="flex items-center cursor-pointer" onClick={handleUnlike()}>
+            {isLiked ? (
+              <div className="flex items-center cursor-pointer" onClick={handleUnlike}>
               <AiTwotoneHeart></AiTwotoneHeart>
               <span className="ml-1">{post.likes.length} Likes</span>
               </div>
             ) : (
-              <div className="flex items-center cursor-pointer" onClick={handleLike()}>
+              <div className="flex items-center cursor-pointer" onClick={handleLike}>
               <AiOutlineHeart></AiOutlineHeart>
               <span className="ml-1">{post.likes.length} Likes</span>
               </div>
