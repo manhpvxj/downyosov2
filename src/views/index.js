@@ -6,3 +6,4 @@ export {default as EditProfile} from './EditProfile';
 export {default as HomeLayout } from './Layout/HomeLayout';
 export {default as UserLayout } from './Layout/UserLayout';
 export {default as News } from './News';
+export {default as Post } from "./Post";

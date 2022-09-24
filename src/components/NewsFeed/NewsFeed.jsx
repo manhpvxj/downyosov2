@@ -1,19 +1,12 @@
 
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Link } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
 const NewsFeed = () => {
     const [data, setData] = useState([]);
-    const [isLiked, setLiked] = useState(false);
 
-    const handleLike = () => {
-      setLiked(true);
-    }
-    const handleUnlike = () => {
-      setLiked(false);
-    }
     useEffect( () => {
     const fetchData = async () => {
         const postsData = [];
@@ -33,27 +26,19 @@ const NewsFeed = () => {
               <div className="flex items-center">
                 <img src={post.author.avatar} alt="avatar" className=" w-10 h-10 rounded-full"></img>
                 <div className=" pl-1 ">
-                <p className=" text-base">{post.author.username}</p>
+                <Link to={`/u/${post.author.username}`} className=" text-base">{post.author.username}</Link>
                 <p className="block text-sm">{dayjs(post.updatedAt).locale('vi').format("DD MMM")}</p>
                 </div>
               </div>
-              <p className="mt-1 ml-1">{post.content}</p>
+              <p className="mt-1 ml-1 w-full break-words">{post.content}</p>
             </div>
           </div>
         
         <div>
         <div className="flex text-sm text-white dark:text-zinc-700 ml-4 md:items-center md:justify-center" key={index}>
-            {isLiked ? (
-              <div className="flex items-center cursor-pointer" onClick={handleUnlike}>
-              <AiTwotoneHeart></AiTwotoneHeart>
-              <span className="ml-1">{post.likes.length} Likes</span>
+              <div className="flex items-center cursor-pointer">
+              <Link to={`/posts/${post._id}`} className="ml-1">{post.likes.length} Likes</Link>
               </div>
-            ) : (
-              <div className="flex items-center cursor-pointer" onClick={handleLike}>
-              <AiOutlineHeart></AiOutlineHeart>
-              <span className="ml-1">{post.likes.length} Likes</span>
-              </div>
-            )}           
           <Link to={`/posts/${post._id}`} className="pl-4" >{post.comments.length} Comments</Link>
         </div>
         </div>

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { BsFacebook, BsGithub, BsDiscord } from "react-icons/bs";
+import { HiLink } from "react-icons/hi";
 import { FaUserEdit } from "react-icons/fa";
 import axiosClient from "../../api/axiosClient";
 
@@ -67,14 +67,14 @@ const ProfileContent = () => {
                 <ul className="flex">
                     <li>
                         <a href={userData.facebook}>
-                        <BsFacebook size={"16px"} className="text-white dark:text-blue-500"></BsFacebook>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
                         </a>
                     </li>
                     <li className="pl-4">
-                        <BsGithub size={"16px"} className="text-white dark:text-blue-500"></BsGithub>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
                     </li>
                     <li className="pl-4">
-                        <BsDiscord size={"16px"} className="text-white dark:text-blue-500"></BsDiscord>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
                     </li>
                 </ul>
             </div>

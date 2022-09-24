@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axiosClient from "../../api/axiosClient";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 
 const CreatePost = () => {
@@ -34,7 +35,7 @@ const CreatePost = () => {
                 </p>
             </div >
             <div className="ml-2 mb-2">
-                <input name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-zinc-400 placeholder-zinc-600 duration-500 w-[50%] h-10 overflow-scroll" value={content} onChange={(e) => {setContent(e.target.value)}}></input>
+                <TextareaAutosize name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-zinc-800 placeholder-zinc-600 duration-500 w-[80%] " value={content} onChange={(e) => {setContent(e.target.value)}}></TextareaAutosize>
                 <button className="absolute right-2 bottom-1 dark:text-zinc-700 dark:bg-blue-500 px-2 py-1 rounded-md bg-pink-300 duration-500" onClick={handleCreatePost}>Post</button>
             </div>
             </div>

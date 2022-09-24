@@ -35,7 +35,7 @@ const LoginContent = () => {
                     <div className="items-center justify-center mt-10">
                         <div className="w-[80%] ml-[10%]">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Username or Email</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Username or Email</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
                                 <input 
@@ -49,7 +49,7 @@ const LoginContent = () => {
 
                         <div className="mt-4 w-[80%] ml-[10%]">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Password</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Password</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
                                 <input 
