@@ -26,7 +26,7 @@ const NewsFeed = () => {
                 <img src={post.author.avatar} alt="avatar" className=" w-10 h-10 rounded-full"></img>
                 <div className=" pl-1 ">
                 <Link to={`/u/${post.author.username}`} className=" text-base">{post.author.username}</Link>
-                <p className="block text-sm">{dayjs(post.updatedAt).locale('vi').format("DD MMM")}</p>
+                <p className="block text-sm">{dayjs(post.updatedAt).locale('vi').format("HH:mm DD MMM")}</p>
                 </div>
               </div>
               <p className="mt-1 ml-1 w-full break-words">{post.content}</p>

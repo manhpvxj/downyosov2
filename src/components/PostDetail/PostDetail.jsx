@@ -83,7 +83,7 @@ const PostDetail = () => {
                           <img src={comment.avatar} alt="avatar" className="w-8 h-8 rounded-full m-1"/>
                           <div className="block">
                             <Link to={`/u/${comment.author}`} className="ml-2">{comment.author}</Link>
-                            <div className="ml-2">{dayjs(comment.updatedAt).locale('vi').format("DD MMM")}</div>
+                            <div className="ml-2">{dayjs(comment.updatedAt).locale('vi').format("HH:mm DD MMM")}</div>
                           </div>
                         </div>
                         <p className="ml-[10%]">{comment.content}</p>
