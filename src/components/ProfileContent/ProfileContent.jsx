@@ -23,7 +23,7 @@ const ProfileContent = () => {
     fetchData();
   }, [navigate]);
     return ( 
-      <div class="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full top-28 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16 duration-1000">
+      <div class="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full top-28 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16">
         <div class="px-6">
         <div class="flex flex-wrap justify-center">
             <div class="w-full flex justify-center">
@@ -59,7 +59,7 @@ const ProfileContent = () => {
             </div>
             <h3 class="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
         </div>
-        <div class="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center duration-1000">
+        <div class="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center">
             <div class="flex flex-wrap justify-center">
                 <div class="w-full px-4">
                     <p class="font-normal leading-relaxed dark:text-slate-700 text-zinc-200 mb-4">{userData.description}</p>

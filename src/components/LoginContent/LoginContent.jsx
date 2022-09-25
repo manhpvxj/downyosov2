@@ -28,7 +28,7 @@ const LoginContent = () => {
     
     return (
         <div>
-            <div className=" flex items-center p-4 py-8 m-auto bg-zinc-800 dark:bg-zinc-100 duration-1000 sm:p-8">
+            <div className=" flex items-center p-4 py-8 m-auto bg-zinc-800 dark:bg-zinc-100 sm:p-8">
                 <div className="py-4 mx-auto w-64 md:w-96">
                     <h1 
                         className="text-center font-extrabold text-4xl text-white leading-8 tracking-tight dark:text-zinc-700">Login</h1>
@@ -64,18 +64,18 @@ const LoginContent = () => {
                         </div>
                         <div className="flex w-full mt-10 flex-col justify-center items-center">
                             <button 
-                            className="items-center font-bold bg-pink-300 text-white py-3 px-9 hover:bg-white border-pink-300 hover:text-pink-300 rounded-lg dark:bg-blue-400 dark:text-zinc-600 dark:hover:bg-white border-[0.5px] dark:border-blue-400 dark:hover:text-blue-400 duration-500"
+                            className="items-center font-bold bg-pink-300 text-white py-3 px-9 hover:bg-white border-pink-300 hover:text-pink-300 rounded-lg dark:bg-blue-400 dark:text-zinc-600 dark:hover:bg-white border-[0.5px] dark:border-blue-400 dark:hover:text-blue-400 "
                             onClick={handleSubmitLogin}>
                                 <p>Enter</p>
                             </button>
                         </div>
                     </div>
 
-                    <div className=" text-sm text-center mt-4 text-pink-300 dark:text-blue-400 duration-1000 ">
+                    <div className=" text-sm text-center mt-4 text-pink-300 dark:text-blue-400 ">
                         <p className="cursor-pointer hover:opacity-70">Forgot your password?</p> 
                     </div>
 
-                    <div className=" text-sm text-center mt-4 text-pink-300 dark:text-blue-400 duration-1000 ">
+                    <div className=" text-sm text-center mt-4 text-pink-300 dark:text-blue-400">
                         <Link to="/register">
                             <p className="cursor-pointer hover:opacity-70">Create an account</p>
                         </Link>

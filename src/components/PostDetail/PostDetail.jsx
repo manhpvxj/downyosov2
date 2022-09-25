@@ -2,22 +2,36 @@ import axiosClient from "../../api/axiosClient";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import dayjs from "dayjs";
 const PostDetail = () => {
     const [postData, setPostData] = useState({});
+    const [userData, setUserData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const [content, setContent] = useState();
     const [isLiked, setLiked] = useState(false);
     const [isLoading, setLoading] = useState(true);
     const handleLike = (isLike) => {
       setLiked(!isLike);
     }
+    const handlePostComment = async () => {
+      try {
+        await axiosClient.post(`/posts/${id}/comment`, {content} );
+        window.location.reload();
+      }
+      catch(e) {
+        navigate(`/posts/${id}`);
+        console.log(e);
+      }
+    }
     useEffect( () => {
         const fetchData = async () => {
             try {
               const res = await axiosClient.get(`/posts/${id}`);
+              const user = await axiosClient.get(`/users/${localStorage.getItem("username")}`);
               setPostData(res);
+              setUserData(user);
               setLoading(false);
             } catch (error) {
               navigate("/news");
@@ -54,15 +68,25 @@ const PostDetail = () => {
             )}           
           <Link to={`/posts/${postData._id}`} className="pl-4" >{postData.comments.length} Comments</Link>
         </div>
-            <div className="mx-auto w-[40%] mt-4">
-                <input type="text" name="comment" placeholder="Add a comment...." />
+            <div className="flex mx-auto items-center justify-center mt-10">
+                <img src={userData.avatar} alt="avatar" className="w-10 h-10 rounded-full"/>
+                <div className="mt-2 ml-2">
+                    <TextareaAutosize name="content" placeholder="Add a comment...." className="dark:bg-zinc-200 bg-zinc-600" value={content} onChange={(e) => {setContent(e.target.value)}}/>
+                </div>
+                <button className="bg-pink-300 dark:bg-blue-500 text-white rounded-lg px-3 py-1 ml-4 hover:opacity-80" onClick={handlePostComment}>Post</button>
             </div>
         {
-            postData.comments.map((comment, index) => {
+            Array.from(postData.comments).reverse().map((comment, index) => {
                 return (
-                    <div className="mx-auto mt-8 border-[0.5px] md:w-[40%] w-80% dark:border-blue-500 border-pink-300 rounded-lg" key={index}>
-                        <Link to={`/u/${comment.author}`} className="ml-2">{comment.author}</Link>
-                        <p className="ml-4">{comment.content}</p>
+                    <div className="mx-auto mt-8 leading-6 md:w-[40%] w-80% dark:bg-zinc-200 bg-zinc-600 dark:text-slate-800 text-slate-300 rounded-lg" key={index}>
+                        <div className="flex">
+                          <img src={comment.avatar} alt="avatar" className="w-8 h-8 rounded-full m-1"/>
+                          <div className="block">
+                            <Link to={`/u/${comment.author}`} className="ml-2">{comment.author}</Link>
+                            <div className="ml-2">{dayjs(comment.updatedAt).locale('vi').format("DD MMM")}</div>
+                          </div>
+                        </div>
+                        <p className="ml-[10%]">{comment.content}</p>
                     </div>
                 )
             }) 

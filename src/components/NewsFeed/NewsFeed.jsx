@@ -1,7 +1,6 @@
 
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
-import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Link } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
 const NewsFeed = () => {

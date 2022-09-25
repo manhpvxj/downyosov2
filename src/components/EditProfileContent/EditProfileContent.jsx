@@ -43,7 +43,7 @@ const EditProfileContent = () => {
         }
     }
     return ( 
-      <div className="relative max-w-md mx-auto top-28 md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full mb-6 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16 duration-1000">
+      <div className="relative max-w-md mx-auto top-28 md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full mb-6 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16">
         <div className="px-6">
         <div className="flex flex-wrap justify-center">
             <div className="w-full flex justify-center">
@@ -76,10 +76,10 @@ const EditProfileContent = () => {
             </div>
             <h3 className="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
         </div>
-        <div className="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center duration-1000">
+        <div className="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center">
             <div className="flex flex-wrap justify-center">
                 <div className="w-full px-4">
-                    <input name="input" type="text" className="font-normal text-center text-zinc-200 dark:text-slate-700 mb-4 dark:bg-zinc-100 bg-zinc-800 duration-1000" value={userData.description} onChange={(e) => {setUserData({...userData, description: e.target.value})}}></input>
+                    <input name="input" type="text" className="font-normal text-center text-zinc-200 dark:text-slate-700 mb-4 dark:bg-zinc-100 bg-zinc-800 " value={userData.description} onChange={(e) => {setUserData({...userData, description: e.target.value})}}></input>
                 </div>
                 <ul className=" relative mr-[30%]">
                     <li className="flex flex-row">
@@ -98,7 +98,7 @@ const EditProfileContent = () => {
             </div>
             <div className="w-full mt-10 justify-center items-center">
                 <button 
-                    className="items-center font-bold bg-pink-300 text-white py-1 px-6 rounded-lg dark:bg-blue-400 dark:text-zinc-600 hover:opacity-80 duration-500" 
+                    className="items-center font-bold bg-pink-300 text-white py-1 px-6 rounded-lg dark:bg-blue-400 dark:text-zinc-600 hover:opacity-80" 
                     onClick={handleEditProfile}>
                     <p>Submit</p>
                 </button>
