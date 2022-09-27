@@ -22,7 +22,6 @@ const UserNavBar = () => {
         const res = await axiosClient.get(`/users/${localStorage.getItem("username")}`);
         setUserData(res);
       } catch (error) {
-        alert(error);
       }
     };
     fetchData();

@@ -1,11 +1,11 @@
 
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
 const NewsFeed = () => {
     const [data, setData] = useState([]);
-
+    const navigate = useNavigate();
     useEffect( () => {
     const fetchData = async () => {
         const postsData = [];
@@ -16,7 +16,7 @@ const NewsFeed = () => {
         setData(postsData);
     }
     fetchData(); 
-    }, []);
+    }, [data,navigate]);
     return ( 
         data.map((post, index) => {
           return <div key={index}>
@@ -26,7 +26,7 @@ const NewsFeed = () => {
                 <img src={post.author.avatar} alt="avatar" className=" w-10 h-10 rounded-full"></img>
                 <div className=" pl-1 ">
                 <Link to={`/u/${post.author.username}`} className=" text-base">{post.author.username}</Link>
-                <p className="block text-sm">{dayjs(post.updatedAt).locale('vi').format("HH:mm DD MMM")}</p>
+                <p className="block text-sm">{dayjs(post.createdAt).locale('vi').format("HH:mm DD MMM")}</p>
                 </div>
               </div>
               <p className="mt-1 ml-1 w-full break-words">{post.content}</p>
@@ -35,10 +35,15 @@ const NewsFeed = () => {
         
         <div>
         <div className="flex text-sm text-white dark:text-zinc-700 ml-4 md:items-center md:justify-center" key={index}>
-              <div className="flex items-center cursor-pointer">
-              <Link to={`/posts/${post._id}`} className="ml-1">{post.likes.length} Likes</Link>
-              </div>
-          <Link to={`/posts/${post._id}`} className="pl-4" >{post.comments.length} Comments</Link>
+        {(post.likes.length < 2) ? (
+            <Link to={`/posts/${post._id}`} className="pl-4" >{post.likes.length} Like</Link>)
+          : (<Link to={`/posts/${post._id}`} className="ml-1">{post.likes.length} Likes</Link>)
+          }
+              
+          {(post.comments.length < 2) ? (
+            <Link to={`/posts/${post._id}`} className="pl-4" >{post.comments.length} Comment</Link>)
+          : (<Link to={`/posts/${post._id}`} className="pl-4" >{post.comments.length} Comments</Link>)
+          }
         </div>
         </div>
         </div>

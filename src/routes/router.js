@@ -15,10 +15,10 @@ const publicRouter = [
         path: "/u/:user/edit", component: EditProfile, layout: UserLayout,
     },
     {
-        path:"/news", component: News, layout: UserLayout,
+        path:"/news", component: News, layout: isLoggedin ? UserLayout : HomeLayout,
     },
     {
-        path:"/posts/:id", component: Post, layout: UserLayout,
+        path:"/posts/:id", component: Post, layout: isLoggedin ? UserLayout : HomeLayout,
     },
     {
         path: "/", component: Home, layout: HomeLayout,

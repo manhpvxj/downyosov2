@@ -18,7 +18,6 @@ const LoginContent = () => {
             localStorage.setItem("id", res._id);
             localStorage.setItem("username", res.username);
             localStorage.setItem("token", res.token);
-            alert("Login successful!");
             navigate("/news");
             } catch (e) {
                 setErrMessage(e.response.data.errMsg);

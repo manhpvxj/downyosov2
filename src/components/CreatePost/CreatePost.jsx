@@ -6,11 +6,12 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 const CreatePost = () => {
     const [content, setContent] = useState();
     const [userData, setUserData] = useState({});
+    const userToken = localStorage.getItem("token");
     const handleCreatePost = async () => {
         if(content) {
             try {
-                await axiosClient.post(`/${localStorage.getItem("username")}/posts/create`, {content});
-                window.location.reload();
+                await axiosClient.post(`/${localStorage.getItem("username")}/posts/create`, {content}); 
+                setContent("");          
             }
             catch (e) {
                 alert(e.response.data);
@@ -25,7 +26,7 @@ const CreatePost = () => {
         setUserData(res);
         }
         fetchData();
-    }, [])
+    }, [userToken])
     return ( 
             <div className=" relative text-white border-2 border-pink-300 dark:border-blue-500 rounded-lg mt-28 w-[90%] mx-auto md:w-[50%]">
             <div className="flex m-1">

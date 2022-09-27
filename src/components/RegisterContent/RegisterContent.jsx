@@ -1,17 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";      
 import { useState } from "react";
 import axiosClient from '../../api/axiosClient';  
+import validator from "validator";
 
 const RegisterContent = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [userData, setUserData] = useState({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    })
     const [errMessage, setErrMessage] = useState("");
     const navigate = useNavigate();
 
     const handlePasswordRegister = () => {
-        if(password !== confirmPassword) {
+        if(userData.password !== userData.confirmPassword) {
             setErrMessage("Passwords do not match");
         }
         else {
@@ -19,22 +22,25 @@ const RegisterContent = () => {
         }
     }
 
-    const handleSubmitRegister= async () => {
-            if (username && email && password && confirmPassword && password === confirmPassword) {
-            try {
-            const res = await axiosClient.post("/auth/register", {
-              username,
-              email,
-              password,
-            });
-            localStorage.setItem("id", res._id);
-            localStorage.setItem("username", res.username);
-            localStorage.setItem("token", res.token);
-            alert(res.msg);
-            navigate("/news");
-          } catch (e) {
-            setErrMessage(e.response.data.errMsg);
-        }
+    const handleSubmitRegister = async () => {
+            if (userData) {
+                if(!validator.isEmail(userData.email)) {
+                    setErrMessage("Invalid Email");
+                }
+                else if (!validator.isLength(userData.password,{min:6})) {
+                    setErrMessage("Password must have at least 6 characters");
+                }
+                else if(!validator.isAlpha(userData.username)) {
+                    setErrMessage("Invalid Username");
+                }
+                else {
+                    try {
+                        await axiosClient.post("/auth/register", userData);
+                        navigate("/login");
+                    } catch (e) {
+                        setErrMessage(e.response.data.errMsg);
+                    }
+                }
       }
     }
     return (
@@ -45,61 +51,64 @@ const RegisterContent = () => {
                     <div className="items-center justify-center mt-10">
                         <div className="w-[80%] ml-[10%]">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Username</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Username</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
-                                <input name="username" 
-                                value={username}
+                                <input name="username" required
+                                value={userData.username}
                                 type="text" 
                                 className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
-                                onChange={(e) => {setUsername(e.target.value)}}/>
+                                onChange={(e) => {setUserData({...userData, username: e.target.value})}}/>
                             </div>
                         </div>
 
                         <div className="mt-4 w-[80%] ml-[10%] sm:mt-2">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Email</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Email</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
-                                <input name="email" 
-                                value={email} 
+                                <input name="email" required
+                                value={userData.email} 
                                 type="text" 
                                 className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
-                                onChange={(e) => {setEmail(e.target.value)}}/>
+                                onChange={(e) => {setUserData({...userData, email: e.target.value})}}/>
                             </div>
                         </div>
 
                         <div className="mt-4 w-[80%] ml-[10%] sm:mt-2">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Password</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Password</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
                                 <input 
+                                required
                                 name="password" 
-                                value={password}
+                                value={userData.password}
                                 type="password" 
                                 className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
-                                onChange={(e) => {setPassword(e.target.value)}}/>
+                                onChange={(e) => {setUserData({...userData, password: e.target.value})}}/>
                             </div>
                         </div>
 
                         <div className="mt-4 w-[80%] ml-[10%] sm:mt-2">
                             <div className="flex flex-row items-center justify-between">
-                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800" for="input">Confirm password</label>
+                                <label className="block text-md text-left font-medium text-zinc-400 dark:text-zinc-800">Confirm password</label>
                             </div>
                             <div className="relative flex mt-1 shadow">
                                 <input 
+                                required
                                 name="confirmPassword" 
-                                value={confirmPassword} 
+                                value={userData.confirmPassword} 
                                 type="password" 
                                 className="block w-full rounded bg-zinc-700 text-zinc-400 placeholder-zinc-600 border-pink-300 border-2 dark:border-blue-400 dark:bg-zinc-200 dark:text-zinc-800"
-                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                onChange={(e) => {setUserData({...userData, confirmPassword: e.target.value})}}
                                 onBlur={handlePasswordRegister}/>
                             </div>
-                        </div>
-                        <div className="flex w-full text-red-500 mt-2 pl-10">
+                            <div className="flex w-full text-xs text-red-500 mt-2">
                             {errMessage}
                         </div>
+                        </div>
+                        
                         <div className="flex w-full mt-10 flex-col justify-center items-center">
                             <button 
                                 className="items-center font-bold bg-pink-300 text-white py-3 px-9 hover:bg-white border-pink-300 hover:text-pink-300 rounded-lg dark:bg-blue-400 dark:text-zinc-600 dark:hover:bg-white border-[0.5px] dark:border-blue-400 dark:hover:text-blue-400" 

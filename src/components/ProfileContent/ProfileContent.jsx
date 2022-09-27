@@ -21,13 +21,13 @@ const ProfileContent = () => {
       }
     };
     fetchData();
-  }, [navigate]);
+  }, [navigate, user]);
     return ( 
-      <div class="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full top-28 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16">
-        <div class="px-6">
-        <div class="flex flex-wrap justify-center">
-            <div class="w-full flex justify-center">
-                <div class="relative">
+      <div className="relative max-w-md mx-auto md:max-w-2xl md:mt-6 min-w-0 break-words dark:bg-zinc-100 bg-zinc-800 w-full top-28 dark:border-blue-500 border-pink-300 border-2 rounded-xl mt-16">
+        <div className="px-6">
+        <div className="flex flex-wrap justify-center">
+            <div className="w-full flex justify-center">
+                <div className="relative">
                 </div>
             </div>
             {userCheck ? (<div className="flex absolute top-4 right-4 w-[30px] h-[30px] rounded-lg bg-pink-300 dark:bg-blue-400 items-center justify-center">
@@ -39,30 +39,30 @@ const ProfileContent = () => {
             </div>) : (
                 <></>
             )}
-            <div class="w-full text-center mt-10">
-                <div class="flex justify-center lg:pt-4 pt-8 pb-0">
-                    <div class="p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide dark:text-slate-700 text-zinc-400">{userData.posts}</span>
-                        <span class="text-sm dark:text-slate-400 text-zinc-200">Posts</span>
+            <div className="w-full text-center mt-10">
+                <div className="flex justify-center lg:pt-4 pt-8 pb-0">
+                    <div className="p-3 text-center">
+                        <span className="text-xl font-bold block uppercase tracking-wide dark:text-slate-700 text-zinc-400">{userData.posts}</span>
+                        <span className="text-sm dark:text-slate-400 text-zinc-200">Posts</span>
                     </div>
-                    <div class="p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide dark:text-slate-700 text-zinc-400">{userData.followers}</span>
-                        <span class="text-sm dark:text-slate-400 text-zinc-200">Followers</span>
+                    <div className="p-3 text-center">
+                        <span className="text-xl font-bold block uppercase tracking-wide dark:text-slate-700 text-zinc-400">{userData.followers}</span>
+                        <span className="text-sm dark:text-slate-400 text-zinc-200">Followers</span>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="text-center mt-2">
+        <div className="text-center mt-2">
             <div className="flex items-center justify-center m-auto w-16 h-16">
                 <img src={userData.avatar} alt="avatar" className="rounded-full"/>
             </div>
-            <h3 class="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
+            <h3 className="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
         </div>
-        <div class="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center">
-            <div class="flex flex-wrap justify-center">
-                <div class="w-full px-4">
-                    <p class="font-normal leading-relaxed dark:text-slate-700 text-zinc-200 mb-4">{userData.description}</p>
+        <div className="mt-6 py-6 border-t border-pink-300 dark:border-blue-500 text-center">
+            <div className="flex flex-wrap justify-center">
+                <div className="w-full px-4">
+                    <p className="font-normal leading-relaxed dark:text-slate-700 text-zinc-200 mb-4">{userData.description}</p>
                 </div>
                 <ul className="flex">
                     <li>
