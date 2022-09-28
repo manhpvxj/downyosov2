@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";      
 import { useState } from "react";
 import axiosClient from '../../api/axiosClient';  
-import validator from "validator";
 
 const RegisterContent = () => {
     const [userData, setUserData] = useState({
@@ -24,16 +23,6 @@ const RegisterContent = () => {
 
     const handleSubmitRegister = async () => {
             if (userData) {
-                if(!validator.isEmail(userData.email)) {
-                    setErrMessage("Invalid Email");
-                }
-                else if (!validator.isLength(userData.password,{min:6})) {
-                    setErrMessage("Password must have at least 6 characters");
-                }
-                else if(!validator.isAlpha(userData.username)) {
-                    setErrMessage("Invalid Username");
-                }
-                else {
                     try {
                         await axiosClient.post("/auth/register", userData);
                         navigate("/login");
@@ -42,7 +31,7 @@ const RegisterContent = () => {
                     }
                 }
       }
-    }
+    
     return (
         <div>
             <div className=" flex items-center p-4 py-8 m-auto bg-zinc-800 dark:bg-zinc-100 sm:p-8">

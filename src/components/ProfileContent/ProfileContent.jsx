@@ -66,15 +66,19 @@ const ProfileContent = () => {
                 </div>
                 <ul className="flex">
                     <li>
-                        <a href={userData.facebook}>
+                        <a href={userData.web1}>
                         <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
                         </a>
                     </li>
                     <li className="pl-4">
-                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        <a href={userData.web2}>
+                            <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        </a>
                     </li>
                     <li className="pl-4">
-                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        <a href={userData.web3}>
+                            <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        </a>
                     </li>
                 </ul>
             </div>

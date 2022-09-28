@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { BsFacebook, BsGithub, BsDiscord } from "react-icons/bs";
+import { HiLink } from "react-icons/hi";
 import axiosClient from "../../api/axiosClient";
 
 const EditProfileContent = () => {
@@ -26,8 +26,7 @@ const EditProfileContent = () => {
       }
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [navigate]);
+    }, [navigate, user]);
 
     const handleEditProfile = async () => {
         try {
@@ -64,14 +63,14 @@ const EditProfileContent = () => {
             </div>
 
         </div>
-        <div class="text-center mt-2">
+        <div className="text-center mt-2">
             <div className="flex items-center justify-center m-auto w-16 h-16">
                 <img src={avatar ? avatar.preview : userData.avatar} alt="avatar" className="rounded-full"/>
             </div>
             <div className="mt-2">
                 <label>
                     <span className="cursor-pointer dark:text-slate-700 text-zinc-200">Choose file</span>
-                    <input name="avatar" type="file" enctype="multipart/form-data" className="hidden" onChange={onFileChange}></input>
+                    <input name="avatar" type="file" encType="multipart/form-data" className="hidden" onChange={onFileChange}></input>
                 </label>
             </div>
             <h3 className="text-2xl dark:text-slate-700 text-zinc-200 font-bold leading-normal mb-1">@{userData.username}</h3>
@@ -83,16 +82,16 @@ const EditProfileContent = () => {
                 </div>
                 <ul className=" relative mr-[30%]">
                     <li className="flex flex-row">
-                        <BsFacebook size={"16px"} className="text-white dark:text-blue-500"></BsFacebook>
-                        <input name="facebook" value={userData.facebook} type="text" placeholder="Enter your facebook link" className="ml-4 w-auto h-4 text-sm rounded-sm border-[0.5px] border-pink-300 dark:border-blue-500" onChange={(e) => {setUserData({...userData, facebook: e.target.value})}}></input>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        <input name="facebook" value={userData.web1} type="text" placeholder="Enter your link" className="ml-4 w-auto h-4 text-sm rounded-sm border-[0.5px] border-pink-300 dark:border-blue-500" onChange={(e) => {setUserData({...userData, web1: e.target.value})}}></input>
                     </li>
                     <li className="flex flex-row pt-4">
-                        <BsGithub size={"16px"} className="text-white dark:text-blue-500"></BsGithub>
-                        <input name="github" type="text" placeholder="Enter your github link" className="ml-4 w-auto h-4 rounded-sm text-sm border-[0.5px] border-pink-300 dark:border-blue-500" value={userData.github} onChange={(e) => {setUserData({...userData, github: e.target.value})}}></input>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        <input name="github" type="text" placeholder="Enter your link" className="ml-4 w-auto h-4 rounded-sm text-sm border-[0.5px] border-pink-300 dark:border-blue-500" value={userData.web2} onChange={(e) => {setUserData({...userData, web2: e.target.value})}}></input>
                     </li>
                     <li className=" flex flex-row pt-4">
-                        <BsDiscord size={"16px"} className="text-white dark:text-blue-500"></BsDiscord>
-                        <input name="discord" type="text" placeholder="Enter your discord id" className="ml-4 w-auto h-4 rounded-sm text-sm border-[0.5px] border-pink-300 dark:border-blue-500" value={userData.discord} onChange={(e) => {setUserData({...userData, discord: e.target.value})}}></input>
+                        <HiLink size={"16px"} className="text-white dark:text-blue-500"></HiLink>
+                        <input name="discord" type="text" placeholder="Enter your link" className="ml-4 w-auto h-4 rounded-sm text-sm border-[0.5px] border-pink-300 dark:border-blue-500" value={userData.web3} onChange={(e) => {setUserData({...userData, web3: e.target.value})}}></input>
                     </li>
                 </ul>
             </div>

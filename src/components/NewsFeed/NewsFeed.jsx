@@ -1,11 +1,10 @@
 
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
 const NewsFeed = () => {
     const [data, setData] = useState([]);
-    const navigate = useNavigate();
     useEffect( () => {
     const fetchData = async () => {
         const postsData = [];
@@ -16,7 +15,7 @@ const NewsFeed = () => {
         setData(postsData);
     }
     fetchData(); 
-    }, [data,navigate]);
+    }, [data]);
     return ( 
         data.map((post, index) => {
           return <div key={index}>

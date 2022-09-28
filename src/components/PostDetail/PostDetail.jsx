@@ -105,7 +105,7 @@ const PostDetail = () => {
                             <div className="ml-2">{dayjs(comment.createdAt).locale('vi').format("HH:mm DD MMM")}</div>
                           </div>
                         </div>
-                        <p className="ml-[10%]">{comment.content}</p>
+                        <p className="ml-[10%] break-words">{comment.content}</p>
                     </div>
                 )
             }) 

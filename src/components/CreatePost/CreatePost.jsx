@@ -6,7 +6,6 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 const CreatePost = () => {
     const [content, setContent] = useState();
     const [userData, setUserData] = useState({});
-    const userToken = localStorage.getItem("token");
     const handleCreatePost = async () => {
         if(content) {
             try {
@@ -26,7 +25,7 @@ const CreatePost = () => {
         setUserData(res);
         }
         fetchData();
-    }, [userToken])
+    }, [])
     return ( 
             <div className=" relative text-white border-2 border-pink-300 dark:border-blue-500 rounded-lg mt-28 w-[90%] mx-auto md:w-[50%]">
             <div className="flex m-1">
@@ -36,7 +35,7 @@ const CreatePost = () => {
                 </p>
             </div >
             <div className="ml-2 mb-2">
-                <TextareaAutosize name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-white placeholder-zinc-600 w-[80%] " value={content} onChange={(e) => {setContent(e.target.value)}}></TextareaAutosize>
+                <TextareaAutosize name="content" placeholder="Write something" className="bg-zinc-800 dark:bg-zinc-100 text-slate-300 dark:text-zinc-800 placeholder-zinc-600 w-[80%] " value={content} onChange={(e) => {setContent(e.target.value)}}></TextareaAutosize>
                 <button className="absolute right-2 bottom-1 text-white dark:bg-blue-500 px-2 py-1 rounded-md bg-pink-300" onClick={handleCreatePost}>Post</button>
             </div>
             </div>
